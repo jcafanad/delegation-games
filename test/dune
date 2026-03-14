@@ -1,0 +1,10 @@
+(executables
+ (names bench_parallel)
+ (libraries delegation_games core core_unix)
+ (enabled_if false)
+ (preprocess (pps ppx_jane)))
+
+(test
+ (name test_dialectical_routing)
+ (libraries core delegation_games delegation_games.dialectical)
+ (modules test_dialectical_routing))

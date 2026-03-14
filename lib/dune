@@ -1,0 +1,20 @@
+(library
+ (name delegation_games)
+ (public_name delegation_games)
+ (libraries core core_unix owl-base)
+ (preprocess (pps ppx_jane))
+ (modules
+   core_types
+   semantic_types
+   belnap
+   belnap_gadt
+   protocol_effects
+   agent
+   coalition
+   formation
+   protocol_dig
+   protocol_dec
+   chuaque_ffi
+   chuaque_interface
+   dialogue_effects
+   simulation))
