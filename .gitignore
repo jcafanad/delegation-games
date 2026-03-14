@@ -1,0 +1,43 @@
+# Dune build artifacts
+_build/
+*.install
+*.merlin
+
+# OCaml compiled files
+*.cmi
+*.cmo
+*.cmx
+*.cma
+*.cmxa
+*.a
+*.o
+*.so
+*.annot
+*.cmt
+*.cmti
+
+# Editor files
+*.swp
+*.swo
+*~
+.#*
+\#*#
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Opam switch (not the .opam manifest)
+_opam/
+
+# Test artifacts
+*.log
+test_results/
+
+# Working documents — implementation notes and drafts
+docs/improvements/

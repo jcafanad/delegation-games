@@ -1,0 +1,12 @@
+(library
+ (name dialectical)
+ (public_name delegation_games.dialectical)
+ (libraries core delegation_games)
+ (preprocess (pps ppx_jane))
+ (modules
+   argument
+   argumentation_framework
+   dialectical_topology
+   paramo_topology
+   protocol_ddg
+   analysis))

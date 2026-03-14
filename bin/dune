@@ -1,0 +1,5 @@
+(executables
+ (names example dialectical_example)
+ (public_names delegation-example dialectical-example)
+ (libraries delegation_games delegation_games.dialectical core)
+ (preprocess (pps ppx_jane)))
