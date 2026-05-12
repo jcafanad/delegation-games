@@ -164,30 +164,22 @@ module Shapley = struct
     factorial (d - 1.) *. factorial (n - d) /. factorial n
   
   (** Compute Shapley value for agent across all coalitions.
-      
-      Uses backtracking to enumerate subsets efficiently:
-      - Start with full coalition
-      - Recursively remove members
-      - Compute marginal contribution at each step
+
+      φ_i(v) = Σ_{S ⊆ N\{i}} [|S|!(|N|-|S|-1)!/|N|!] · (v(S∪{i}) − v(S))
+
+      Enumerate every subset S of N\{i}; for each, the coalition D = S∪{i}
+      has size |S|+1, so weight(|S|+1, n) = |S|! · (n−|S|−1)! / n!, which
+      matches the formula exactly.  marginal char_func agent D computes
+      v(D) − v(D\{i}) = v(S∪{i}) − v(S).
   *)
   let value char_func agent all_agents =
     let total_agents = List.length all_agents in
-    let rec compute coalition =
-      if Coalition.mem coalition agent then
-        let marginal = Characteristic_function.marginal char_func agent coalition in
-        let weighted = weight (Coalition.size coalition) total_agents *. marginal in
-        
-        (* Recursively compute for subcoalitions *)
-        let subcoalitions = 
-          List.filter coalition ~f:(fun id -> not (Agent_id.equal id agent))
-          |> Coalition.power_set
-          |> List.filter ~f:(fun sub -> Coalition.mem sub agent)
-        in
-        weighted +. List.sum (module Float) subcoalitions ~f:compute
-      else
-        0.
-    in
-    compute (Coalition.of_chain all_agents)
+    let others = List.filter all_agents ~f:(fun id -> not (Agent_id.equal id agent)) in
+    Coalition.power_set others
+    |> List.sum (module Float) ~f:(fun subset ->
+        let coalition_with_agent = Coalition.of_chain (agent :: subset) in
+        weight (Coalition.size coalition_with_agent) total_agents *.
+        Characteristic_function.marginal char_func agent coalition_with_agent)
 end
 
 (** Myerson value - Shapley value restricted to connected coalitions.

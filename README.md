@@ -346,10 +346,6 @@ If using this code, please cite:
 }
 ```
 
-## Contact
-
-Juan Afanador - [GitHub](https://github.com/afanador)
-
 ## Acknowledgments
 
 Fieldwork conducted with Paramuno communities in Colombian Páramo ecosystems. Theoretical framework draws on Adorno's negative dialectics and value-dissociation critique. Paraconsistent logic integration uses the `contra-value` / `chuaque` framework.

@@ -39,5 +39,3 @@ _opam/
 *.log
 test_results/
 
-# Working documents — implementation notes and drafts
-docs/improvements/
